@@ -39,9 +39,6 @@ while guard_iter < len(actions):
     else:
         start = int(actions[guard_iter].time.split(':')[1])
         end = int(actions[guard_iter + 1].time.split(':')[1])
-        print(current_id)
-        print(start)
-        print(end)
         total_time[current_id] = total_time[current_id] + (end - start)
         for i in range(start, end):
             sleep_map[current_id][i] = sleep_map[current_id][i] + 1
@@ -52,8 +49,6 @@ while guard_iter < len(actions):
 print(total_time)
 
 #print(sleep_map['#401'])
-
-print(sleep_map)
 
 print(minutes)
 
