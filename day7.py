@@ -27,7 +27,7 @@ for p in points:
     else:
         prerequisites[p[1]].append(p[0])
 
-
+"""
 order = []
 while len(queue) > 0:
     elem = queue.pop(0)
@@ -42,4 +42,57 @@ while len(queue) > 0:
         queue.sort()
 
 
-print(''.join(order) + end_elements[0])
+order.append(end_elements[0])
+
+
+
+print(''.join(order))
+print(order)
+"""
+
+
+def char2time(c):
+    return ord(c) - 4
+
+
+timer = 0
+nb_workers = 5
+workers = [0] * nb_workers
+position = ['#'] * nb_workers
+
+print(workers)
+print(prerequisites)
+print(queue)
+
+
+while len(queue) > 0 or sum(workers) > 0:
+    # if there are available workers, queue sort and queue => workers
+    queue.sort()
+    while 0 in workers and len(queue) > 0:
+        e = queue.pop(0)
+        ind = workers.index(0)
+        workers[ind] = char2time(e)
+        position[ind] = e
+
+    # time ++
+    for i in range(0, nb_workers):
+        if workers[i] > 0:
+            if workers[i] == 1:
+                retire = position[i]
+                for key in prerequisites:
+                    if retire in prerequisites[key]:
+                        prerequisites[key].remove(retire)
+            workers[i] = workers[i] - 1
+    timer = timer + 1
+
+    # prerequisites => queue if there are available workers
+    temp = []
+    for k, v in prerequisites.items():
+        if len(v) == 0:
+            temp.append(k)
+    for t in temp:
+        prerequisites.pop(t)
+        queue.append(t)
+
+
+print(timer)
