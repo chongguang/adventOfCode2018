@@ -50,7 +50,9 @@ def max_score(times):
             scores[current_player] = scores[current_player] + remove_elem
             current_p = pp
 
-    print(times, max(scores))
+    print(max(scores))
+
+print(max_score(1))
 
 
 from collections import deque, defaultdict
