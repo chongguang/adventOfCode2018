@@ -52,7 +52,7 @@ def max_score(times):
 
     print(max(scores))
 
-print(max_score(1))
+max_score(1)
 
 
 from collections import deque, defaultdict
